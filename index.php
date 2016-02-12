@@ -4,17 +4,17 @@
 
 $config_lines = file('fake_config.txt');
 
-print_r($config_lines . "<br>");
-
 $number_of_lines = count($config_lines);
 
 
+//Remove an newlines
 for($i = 0; $i < $number_of_lines; $i++){
-	//print_r($config_lines[$i] . "<br>");
 	if($config_lines[$i] == "\n"){
-		unset($config_lines[$i]);
+		array_splice($config_lines, $i, 1);
 	}
 }
-print_r($config_lines);
+//config_lines should be free of \n here.
+
+
 
 ?>

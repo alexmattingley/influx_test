@@ -45,6 +45,7 @@ for($i = 0; $i < count($config_lines); $i++){
 //print_r($config_lines);
 echo "<br>";
 print_r($config_file_array);
+print($config_file_array["comment 2"]);
 
 
 

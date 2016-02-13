@@ -23,18 +23,18 @@ for($i = 0; $i < count($config_lines); $i++){
 	for($j = 0; $j < strlen($config_lines[$i]); $j++){
 		echo "i is: $i";
 		echo " j is: $j";
-		echo " before_equals is $before_equals";
+		echo "strlen: " . strlen($config_lines[$i]);
 		if($j == 0 && $config_lines[$i][0] == "#"){
 			$config_file_array["comment $comment_count"] = $config_lines[$i];
 			$comment_count++;
 		}elseif($config_lines[$i][$j] != "=" && $before_equals == 1 && $config_lines[$i][0] != "#"){
 			$current_key = $current_key . $config_lines[$i][$j];
-			echo "current_key:" . $current_key;
 		}elseif($config_lines[$i][$j] == "=" && $config_lines[$i][0] != "#") {
 			$before_equals = 0;
 		}elseif($before_equals == 0 && $config_lines[$i][$j] != "=" && $config_lines[$i][0] != "#"){
 			$current_value = $current_value . $config_lines[$i][$j];
-			echo "current_value: $current_value";
+		}elseif ($j < strlen($config_lines[$i])){
+			echo "this is working";
 		}
 		echo "<br>";
 	}

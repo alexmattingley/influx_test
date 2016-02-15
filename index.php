@@ -48,7 +48,7 @@ foreach($config_file_array as $key => $value){
 	}
 }
 
-var_dump($config_file_array["verbose"]) . "<br>";
+print($config_file_array["verbose"]) . "<br>";
 
 foreach($config_file_array as $key => $value){
 	print gettype($value) . "<br>";

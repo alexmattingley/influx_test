@@ -51,7 +51,7 @@ foreach($config_file_array as $key => $value){
 }
 
 foreach($config_file_array as $key => $value){
-	print gettype($value) . "<br>";
+	print $key . "<br>";
 }
 
 var_dump($config_file_array);

@@ -22,7 +22,7 @@ for($i = 0; $i < count($config_lines); $i++){
 
 	for($j = 0; $j < strlen($config_lines[$i]); $j++){
 		if($j == 0 && $config_lines[$i][0] == "#"){
-			$config_file_array["comment $comment_count"] = $config_lines[$i];
+			$config_file_array["comment_$comment_count"] = $config_lines[$i];
 			$comment_count++;
 		}elseif($config_lines[$i][$j] != "=" && $before_equals == 1 && $config_lines[$i][0] != "#"){
 			$current_key = $current_key . $config_lines[$i][$j];
@@ -48,7 +48,7 @@ foreach($config_file_array as $key => $value){
 	}
 }
 
-var_dump($config_file_array["user"]) . "<br>";
+var_dump($config_file_array["verbose"]) . "<br>";
 
 foreach($config_file_array as $key => $value){
 	print gettype($value) . "<br>";

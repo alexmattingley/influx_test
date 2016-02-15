@@ -45,15 +45,15 @@ foreach($config_file_array as $key => $value){
 		$config_file_array[$key] = floatval($value);
 	}elseif($config_file_array[$key] == "true"){
 		$config_file_array[$key] = true;
+	}elseif($config_file_array[$key] == "false"){
+		$config_file_array[$key] = false;
 	}
 }
-
-print($config_file_array["verbose"]) . "<br>";
 
 foreach($config_file_array as $key => $value){
 	print gettype($value) . "<br>";
 }
 
-print_r($config_file_array);
+var_dump($config_file_array);
 
 ?>

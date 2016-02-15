@@ -22,7 +22,7 @@ for($i = 0; $i < count($config_lines); $i++){
 
 	for($j = 0; $j < strlen($config_lines[$i]); $j++){
 		if($j == 0 && $config_lines[$i][0] == "#"){
-			$config_file_array["comment $comment_count"] = $config_lines[$i];
+			$config_file_array["comment_$comment_count"] = $config_lines[$i];
 			$comment_count++;
 		}elseif($config_lines[$i][$j] != "=" && $before_equals == 1 && $config_lines[$i][0] != "#"){
 			$current_key = $current_key . $config_lines[$i][$j];
@@ -38,24 +38,22 @@ for($i = 0; $i < count($config_lines); $i++){
 }
 
 foreach($config_file_array as $key => $value){
-	$config_file_array[$key] = trim($value); //removes whitespace or any other problematic characters.
+	//removes whitespace or any other problematic characters.
+	$config_file_array[$key] = trim($value); 
+	//turns all string numbers into actual numbers.
 	if(floatval($value) != 0){
 		$config_file_array[$key] = floatval($value);
+	}elseif($config_file_array[$key] == "true"){
+		$config_file_array[$key] = true;
+	}elseif($config_file_array[$key] == "false"){
+		$config_file_array[$key] = false;
 	}
 }
 
-if($config_file_array['user'] == "user "){
-	echo "user is true" . "<br>";
-}else{
-	echo "user is false" . "<br>";
-}
-
-var_dump($config_file_array["user"]) . "<br>";
-
 foreach($config_file_array as $key => $value){
-	print gettype($value) . "<br>";
+	print $key . "<br>";
 }
 
-print_r($config_file_array);
+var_dump($config_file_array);
 
 ?>

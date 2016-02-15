@@ -21,8 +21,6 @@ for($i = 0; $i < count($config_lines); $i++){
 	}
 
 	for($j = 0; $j < strlen($config_lines[$i]); $j++){
-		echo "i is: $i";
-		echo " j is: $j";
 		if($j == 0 && $config_lines[$i][0] == "#"){
 			$config_file_array["comment $comment_count"] = $config_lines[$i];
 			$comment_count++;
@@ -32,21 +30,27 @@ for($i = 0; $i < count($config_lines); $i++){
 			$before_equals = 0;
 		}elseif($before_equals == 0 && $config_lines[$i][$j] != "=" && $config_lines[$i][0] != "#"){
 			$current_value = $current_value . $config_lines[$i][$j];
-			echo $current_value;
 			if($j == strlen($config_lines[$i])-1){
 				$config_file_array[$current_key] = $current_value;
 			}
 		}
-		echo "<br>";
 	}
 }
 
 
 //print_r($config_lines);
-echo "<br>";
 print_r($config_file_array);
-print($config_file_array["comment 2"]);
+print "<br><br>";
 
+foreach($config_file_array as $key => $value){
+	print floatval($value) . "<br>";
+	if(floatval($value) != 0){
+		$config_file_array[$key] = floatval($value);
+	}
+}
 
+foreach($config_file_array as $key => $value){
+	print gettype($value) . "<br>";
+}
 
 ?>

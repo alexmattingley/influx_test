@@ -38,16 +38,14 @@ for($i = 0; $i < count($config_lines); $i++){
 }
 
 foreach($config_file_array as $key => $value){
-	$config_file_array[$key] = trim($value); //removes whitespace or any other problematic characters.
+	//removes whitespace or any other problematic characters.
+	$config_file_array[$key] = trim($value); 
+	//turns all string numbers into actual numbers.
 	if(floatval($value) != 0){
 		$config_file_array[$key] = floatval($value);
+	}elseif($config_file_array[$key] == "true"){
+		$config_file_array[$key] = true;
 	}
-}
-
-if($config_file_array['user'] == "user "){
-	echo "user is true" . "<br>";
-}else{
-	echo "user is false" . "<br>";
 }
 
 var_dump($config_file_array["user"]) . "<br>";

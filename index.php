@@ -37,20 +37,25 @@ for($i = 0; $i < count($config_lines); $i++){
 	}
 }
 
-
-//print_r($config_lines);
-print_r($config_file_array);
-print "<br><br>";
-
 foreach($config_file_array as $key => $value){
-	print floatval($value) . "<br>";
+	$config_file_array[$key] = trim($value); //removes whitespace or any other problematic characters.
 	if(floatval($value) != 0){
 		$config_file_array[$key] = floatval($value);
 	}
 }
 
+if($config_file_array['user'] == "user "){
+	echo "user is true" . "<br>";
+}else{
+	echo "user is false" . "<br>";
+}
+
+var_dump($config_file_array["user"]) . "<br>";
+
 foreach($config_file_array as $key => $value){
 	print gettype($value) . "<br>";
 }
+
+print_r($config_file_array);
 
 ?>

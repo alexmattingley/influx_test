@@ -5,11 +5,13 @@ $config_lines = file('fake_config.txt');
 $config_file_array = array();
 
 for($i = 0; $i < count($config_lines); $i++){
+	
+	//Reset variables for next config line.
 	$current_key = "";
 	$current_value = "";
 	$before_equals = 1;
 
-	//Remove newlines
+	//Removes newlines
 	if($config_lines[$i] == "\n"){
 		array_splice($config_lines, $i, 1);
 	}
@@ -19,46 +21,45 @@ for($i = 0; $i < count($config_lines); $i++){
 		$comment_count = 1;
 	}
 
-
+	//ultimately populates the $config_file_array
 	for($j = 0; $j < strlen($config_lines[$i]); $j++){
 		
+		//creates comment key value pairs
 		if($j == 0 && $config_lines[$i][0] == "#"){
 			$config_file_array["comment_$comment_count"] = $config_lines[$i];
 			$comment_count++;
-		}elseif($config_lines[$i][$j] != "=" && $before_equals == 1 && $config_lines[$i][0] != "#"){
+		}
+		//creates key for array
+		elseif($config_lines[$i][$j] != "=" && $before_equals == 1 && $config_lines[$i][0] != "#"){
 			$current_key = $current_key . $config_lines[$i][$j];
-		}elseif($config_lines[$i][$j] == "=" && $config_lines[$i][0] != "#") {
+		}
+		//flips switch/boolean so we can start creating values
+		elseif($config_lines[$i][$j] == "=" && $config_lines[$i][0] != "#") {
 			$before_equals = 0;
-		}elseif($before_equals == 0 && $config_lines[$i][$j] != "=" && $config_lines[$i][0] != "#"){
+		}
+		//creates value for array
+		elseif($before_equals == 0 && $config_lines[$i][$j] != "=" && $config_lines[$i][0] != "#"){
 			$current_value = $current_value . $config_lines[$i][$j];
+
+			//creates array once we have cycled through the config file line
 			if($j == strlen($config_lines[$i])-1){
-				$trimmed_key = trim($current_key);
-				$config_file_array[$trimmed_key] = $current_value;
+				$current_key = trim($current_key);
+				$current_value = trim($current_value);
+				$config_file_array[$current_key] = $current_value;
 			}
 		}
 	}
 }
 
-//var_dump($config_file_array);
 
-
-
+//Fixes any datatype issues, eg: makes sure booleans are actually booleans and numbers are actually numbers.
 foreach($config_file_array as $key => $value){
-
-	//creates keys that are free of whitespace so they are easier to access.
-	// $trimmed_key = trim($key);
-	// $config_file_array[$trimmed_key] = $config_file_array[$key];
-	// if($key != $trimmed_key){
-	// 	unset($config_file_array[$key]);
-	// }
-
-	//removes whitespace or any other problematic characters from values.
-	$config_file_array[$key] = trim($value); 
 	
 	//turns all string numbers into actual numbers.
 	if(floatval($value) != 0){
 		$config_file_array[$key] = floatval($value);
 	}
+
 	//if a config value is true or false, turn it into actual boolean in the array
 	if($config_file_array[$key] == "true"){
 		$config_file_array[$key] = true;

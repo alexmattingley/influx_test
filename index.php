@@ -69,6 +69,20 @@ foreach($config_file_array as $key => $value){
 	}
 }
 
+//The array in its entirety
 var_dump($config_file_array);
+echo "<br><br>";
+
+//Lets access one of the numerical values
+var_dump($config_file_array['server_id']);
+echo "<br><br>";
+
+//Lets access one of the string values:
+var_dump($config_file_array['host']);
+echo "<br><br>";
+
+//Lets access one of the booleans:
+var_dump($config_file_array['verbose']);
+echo "<br><br>";
 
 ?>

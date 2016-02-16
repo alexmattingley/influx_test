@@ -74,7 +74,7 @@ var_dump($config_file_array);
 echo "<br><br>";
 
 //Lets access a comment
-var_dump('comment_1');
+var_dump($config_file_array['comment_1']);
 echo "<br><br>";
 
 //Lets access one of the numerical values

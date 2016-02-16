@@ -51,7 +51,11 @@ foreach($config_file_array as $key => $value){
 }
 
 foreach($config_file_array as $key => $value){
-	print $key . "<br>";
+	$trimmed_key = trim($key);
+	$config_file_array[$trimmed_key] = $config_file_array[$key];
+	if($key !== $trimmed_key){
+		unset($config_file_array[$key]);
+	}
 }
 
 var_dump($config_file_array);

@@ -44,7 +44,9 @@ for($i = 0; $i < count($config_lines); $i++){
 			//creates array once we have cycled through the config file line
 			if($j == strlen($config_lines[$i])-1){
 				$current_key = trim($current_key);
+				$current_key = strtolower($current_key);
 				$current_value = trim($current_value);
+				$current_value = strtolower($current_value);
 				$config_file_array[$current_key] = $current_value;
 			}
 		}

@@ -13,5 +13,5 @@ test_mode=on
 debug_mode = on
 log_file_path=/tmp/logfile.log
 send_notifications    = no
-php_is_awesome =    false
+Php_is_awesome =    False
 lkjadg;ljk

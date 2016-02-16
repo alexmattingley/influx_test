@@ -1,5 +1,3 @@
-<p><?php echo "server working!"; ?></p>
-
 <?php
 
 $config_lines = file('fake_config.txt');
@@ -21,6 +19,7 @@ for($i = 0; $i < count($config_lines); $i++){
 	}
 
 	for($j = 0; $j < strlen($config_lines[$i]); $j++){
+		
 		if($j == 0 && $config_lines[$i][0] == "#"){
 			$config_file_array["comment_$comment_count"] = $config_lines[$i];
 			$comment_count++;
@@ -38,23 +37,27 @@ for($i = 0; $i < count($config_lines); $i++){
 }
 
 foreach($config_file_array as $key => $value){
-	//removes whitespace or any other problematic characters.
-	$config_file_array[$key] = trim($value); 
-	//turns all string numbers into actual numbers.
-	if(floatval($value) != 0){
-		$config_file_array[$key] = floatval($value);
-	}elseif($config_file_array[$key] == "true"){
-		$config_file_array[$key] = true;
-	}elseif($config_file_array[$key] == "false"){
-		$config_file_array[$key] = false;
-	}
-}
 
-foreach($config_file_array as $key => $value){
+	//creates keys that are free of whitespace so they are easier to access.
 	$trimmed_key = trim($key);
 	$config_file_array[$trimmed_key] = $config_file_array[$key];
 	if($key !== $trimmed_key){
 		unset($config_file_array[$key]);
+	}
+
+	//removes whitespace or any other problematic characters from values.
+	$config_file_array[$key] = trim($value); 
+	
+	//turns all string numbers into actual numbers.
+	if(floatval($value) != 0){
+		$config_file_array[$key] = floatval($value);
+	}
+	//if a config value is true or false, turn it into actual boolean in the array
+	if($config_file_array[$key] == "true"){
+		$config_file_array[$key] = true;
+	}
+	elseif($config_file_array[$key] == "false"){
+		$config_file_array[$key] = false;
 	}
 }
 

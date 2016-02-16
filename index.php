@@ -14,9 +14,11 @@ for($i = 0; $i < count($config_lines); $i++){
 		array_splice($config_lines, $i, 1);
 	}
 
+	//sets up comment count so we can have unique key values to store comments
 	if($i == 0){
 		$comment_count = 1;
 	}
+
 
 	for($j = 0; $j < strlen($config_lines[$i]); $j++){
 		

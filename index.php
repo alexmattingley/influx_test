@@ -32,25 +32,25 @@ for($i = 0; $i < count($config_lines); $i++){
 		}elseif($before_equals == 0 && $config_lines[$i][$j] != "=" && $config_lines[$i][0] != "#"){
 			$current_value = $current_value . $config_lines[$i][$j];
 			if($j == strlen($config_lines[$i])-1){
-				$config_file_array[$current_key] = $current_value;
+				$trimmed_key = trim($current_key);
+				$config_file_array[$trimmed_key] = $current_value;
 			}
 		}
 	}
 }
 
-var_dump($config_file_array);
+//var_dump($config_file_array);
 
-print "<br>";
+
 
 foreach($config_file_array as $key => $value){
 
 	//creates keys that are free of whitespace so they are easier to access.
-	$trimmed_key = trim($key);
-	$config_file_array[$trimmed_key] = $config_file_array[$key];
-	if($key != $trimmed_key){
-		echo "this is working";
-		unset($config_file_array[$key]);
-	}
+	// $trimmed_key = trim($key);
+	// $config_file_array[$trimmed_key] = $config_file_array[$key];
+	// if($key != $trimmed_key){
+	// 	unset($config_file_array[$key]);
+	// }
 
 	//removes whitespace or any other problematic characters from values.
 	$config_file_array[$key] = trim($value); 

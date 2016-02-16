@@ -38,12 +38,17 @@ for($i = 0; $i < count($config_lines); $i++){
 	}
 }
 
+var_dump($config_file_array);
+
+print "<br>";
+
 foreach($config_file_array as $key => $value){
 
 	//creates keys that are free of whitespace so they are easier to access.
 	$trimmed_key = trim($key);
 	$config_file_array[$trimmed_key] = $config_file_array[$key];
-	if($key !== $trimmed_key){
+	if($key != $trimmed_key){
+		echo "this is working";
 		unset($config_file_array[$key]);
 	}
 

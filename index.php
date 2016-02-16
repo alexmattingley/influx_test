@@ -73,6 +73,10 @@ foreach($config_file_array as $key => $value){
 var_dump($config_file_array);
 echo "<br><br>";
 
+//Lets access a comment
+var_dump('comment_1');
+echo "<br><br>";
+
 //Lets access one of the numerical values
 var_dump($config_file_array['server_id']);
 echo "<br><br>";

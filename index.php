@@ -61,10 +61,10 @@ foreach($config_file_array as $key => $value){
 	}
 
 	//if a config value is true or false, turn it into actual boolean in the array
-	if($config_file_array[$key] == "true"){
+	if($config_file_array[$key] == "true" || $config_file_array[$key] == "on" || $config_file_array[$key] == "yes"){
 		$config_file_array[$key] = true;
 	}
-	elseif($config_file_array[$key] == "false"){
+	elseif($config_file_array[$key] == "false" || $config_file_array[$key] == "off" || $config_file_array[$key] == "no"){
 		$config_file_array[$key] = false;
 	}
 }

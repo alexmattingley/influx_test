@@ -10,8 +10,8 @@ user=user
 
 verbose = true
 test_mode=on
-debug_mode =     off
+debug_mode = on
 log_file_path=/tmp/logfile.log
-send_notifications    = yes
+send_notifications    = no
 php_is_awesome =    false
 lkjadg;ljk
